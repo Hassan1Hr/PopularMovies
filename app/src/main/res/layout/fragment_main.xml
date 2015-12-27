@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/noInternet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="no Internet Connection"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/noFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No Favorite Movies"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:visibility="gone"/>
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="@dimen/poster_width"
+        android:gravity="center"
+        android:numColumns="auto_fit"
+        android:paddingBottom="@dimen/poster_padding"
+        android:paddingTop="@dimen/poster_padding"
+        android:stretchMode="spacingWidthUniform"
+        android:textAlignment="center"
+        android:verticalSpacing="@dimen/poster_padding"
+        android:drawSelectorOnTop="true"
+        tools:context=".MainActivityFragment"
+        />
+
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:enabled="true"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="@dimen/abc_dialog_padding_top_material"
+        android:paddingBottom="@dimen/abc_dialog_padding_top_material" />
+    />
+
+</RelativeLayout>

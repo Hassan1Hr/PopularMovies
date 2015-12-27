@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.0"
+
+    defaultConfig {
+        applicationId "com.example.hassan.popularmovies"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'MOVIES_DB_API_KEY', "\"8913b3cf8ab241bf423cc5ea76d26bd6\""
+    }
+
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.android.support:cardview-v7:23.0.0'
+    compile 'com.pkmmte.view:circularimageview:1.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.github.frankiesardo:linearlistview:1.0.1@aar'
+    compile 'com.android.support:palette-v7:23.0.1'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+}

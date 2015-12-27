@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="Theme.Main" parent="MyMaterialTheme.Base">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+    </style>
+
+</resources>
