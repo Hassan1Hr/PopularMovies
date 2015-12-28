@@ -567,7 +567,7 @@ public class DetailsActivityFragment extends Fragment  {
         }
 
     public static int isFavorited(Context context, long id) {
-        Cursor cursor = context.getContentResolver().query(
+        Cursor cursor = MyApplication.getAppContext().getContentResolver().query(
                 MovieContract.MovieEntry.CONTENT_URI,
                 null,   // projection
                 MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?", // selection
@@ -597,10 +597,10 @@ public class DetailsActivityFragment extends Fragment  {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static Drawable getDrawable(Context context, int resource) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return context.getResources().getDrawable(resource, null);
+            return MyApplication.getAppContext().getResources().getDrawable(resource, null);
         }
 
-        return context.getResources().getDrawable(resource);
+        return MyApplication.getAppContext().getResources().getDrawable(resource);
     }
 
 

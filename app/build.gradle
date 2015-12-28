@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.example.hassan.popularmovies"
@@ -22,7 +22,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'MOVIES_DB_API_KEY', "\"${YOUR_API_KEY}\""
+        it.buildConfigField 'String', 'MOVIES_DB_API_KEY', "\"8913b3cf8ab241bf423cc5ea76d26bd6\""
     }
 
 }
