@@ -534,9 +534,9 @@ public class DetailsActivityFragment extends Fragment  {
                     StringBuilder sb = new StringBuilder();
                     for (int x = 0; x < reviews.size(); x++) {
                         review1 = reviews.get(x);
-                        sb.append(review1.getAuthor().toUpperCase()+ "\n"+ "\n"+ "\n");
+                        sb.append(review1.getAuthor().toUpperCase()+ "\n");
                         sb.append(review1.getContent()+ "\n");
-                        sb.append("-----------------------"+ "\n"+ "\n");
+                        sb.append("-----------------------"+ "\n"+ "\n"+ "\n");
                     }
                     reviewContent.setText(sb.toString());
                     if (getActivity() instanceof MainActivity) {
