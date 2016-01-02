@@ -1,4 +1,4 @@
-package com.example.hassan.popularmovies.Base;
+package com.example.hassan.popularmovies.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

@@ -1,10 +1,12 @@
-package com.example.hassan.popularmovies;
+package com.example.hassan.popularmovies.Activities;
 
 import android.os.Bundle;
 
 
 
-import com.example.hassan.popularmovies.Base.BaseActivity;
+import com.example.hassan.popularmovies.Activities.BaseActivity;
+import com.example.hassan.popularmovies.Fragments.DetailsActivityFragment;
+import com.example.hassan.popularmovies.R;
 
 public class DetailsActivity extends BaseActivity {
 

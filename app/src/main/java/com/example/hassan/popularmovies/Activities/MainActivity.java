@@ -1,4 +1,4 @@
-package com.example.hassan.popularmovies;
+package com.example.hassan.popularmovies.Activities;
 
 
 import android.os.Bundle;
@@ -7,7 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.hassan.popularmovies.Base.BaseActivity;
+import com.example.hassan.popularmovies.Activities.BaseActivity;
+import com.example.hassan.popularmovies.Fragments.MainActivityFragment;
+import com.example.hassan.popularmovies.R;
 
 
 public class MainActivity extends BaseActivity {
@@ -28,13 +30,14 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
-
+        if(savedInstanceState == null) {
             MainActivityFragment firstFragment = new MainActivityFragment();
-             Bundle bdl1 = new Bundle(2);
-             bdl1.putString(FRAGMENT_ID, mSortBy);
-              firstFragment.setArguments(bdl1);
-             getSupportFragmentManager().beginTransaction()
+            Bundle bdl1 = new Bundle(2);
+            bdl1.putString(FRAGMENT_ID, mSortBy);
+            firstFragment.setArguments(bdl1);
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.movies_container, firstFragment).commit();
+        }
 
     }
 

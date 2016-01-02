@@ -35,7 +35,7 @@
         android:textAlignment="center"
         android:verticalSpacing="@dimen/poster_padding"
         android:drawSelectorOnTop="true"
-        tools:context=".MainActivityFragment"
+        tools:context=".Fragments.MainActivityFragment"
         />
 
 

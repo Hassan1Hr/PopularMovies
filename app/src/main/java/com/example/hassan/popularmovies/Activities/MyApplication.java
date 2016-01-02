@@ -1,4 +1,4 @@
-package com.example.hassan.popularmovies.Base;
+package com.example.hassan.popularmovies.Activities;
 
 import android.app.Application;
 import android.content.Context;

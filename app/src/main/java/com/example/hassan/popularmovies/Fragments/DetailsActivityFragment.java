@@ -1,4 +1,4 @@
-package com.example.hassan.popularmovies;
+package com.example.hassan.popularmovies.Fragments;
 
 
 import android.annotation.TargetApi;
@@ -36,15 +36,18 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
-import com.example.hassan.popularmovies.Base.BaseActivity;
-import com.example.hassan.popularmovies.Base.MyApplication;
+import com.example.hassan.popularmovies.Activities.BaseActivity;
+import com.example.hassan.popularmovies.Activities.MyApplication;
+import com.example.hassan.popularmovies.BuildConfig;
+import com.example.hassan.popularmovies.Activities.DetailsActivity;
+import com.example.hassan.popularmovies.Activities.MainActivity;
+import com.example.hassan.popularmovies.R;
 import com.example.hassan.popularmovies.adapter.TrailerAdapter;
 import com.example.hassan.popularmovies.data.MovieContract;
 import com.example.hassan.popularmovies.model.Movie;
 import com.example.hassan.popularmovies.model.Review;
 import com.example.hassan.popularmovies.model.Trailer;
 import com.linearlistview.LinearListView;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,18 +72,13 @@ public class DetailsActivityFragment extends Fragment  {
     public static final String TAG = DetailsActivityFragment.class.getSimpleName();
     public static final String DETAIL_MOVIE = "DETAIL_MOVIE";
     private Movie mMovie;
-    private Context mContext;
     private ImageView posterImage;
     private ImageView backdropImage;
-    private TextView mTitleView;
     private TextView mOverviewView;
     private TextView mDateView;
     private TextView mVoteAverageView;
     FloatingActionButton myFab;
     private LinearListView mTrailersView;
-    private LinearListView mReviewsView;
-    Bundle mBundle;
-    private CardView mReviewsCardview;
     private CardView mTrailersCardview;
     private TrailerAdapter mTrailerAdapter;
     private CoordinatorLayout mDetailLayout;
@@ -90,7 +88,6 @@ public class DetailsActivityFragment extends Fragment  {
     TextView Review;
     private ShareActionProvider mShareActionProvider;
     ArrayList<Review> reviews;
-    // the first trailer video to share
     private Trailer mTrailer;
 
     public DetailsActivityFragment() {
@@ -121,7 +118,6 @@ public class DetailsActivityFragment extends Fragment  {
     public boolean onOptionsItemSelected( MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
-                // your logic
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -241,7 +237,6 @@ public class DetailsActivityFragment extends Fragment  {
 
     private void addFavorite() {
         if (mMovie != null) {
-            // check if movie is in favorites or not
             new AsyncTask<Void, Void, Integer>() {
 
                 @Override
@@ -251,9 +246,7 @@ public class DetailsActivityFragment extends Fragment  {
 
                 @Override
                 protected void onPostExecute(Integer isFavorited) {
-                    // if it is in favorites
                     if (isFavorited == 1) {
-                        // delete from favorites
                         new AsyncTask<Void, Void, Integer>() {
                             @Override
                             protected Integer doInBackground(Void... params) {
@@ -275,9 +268,7 @@ public class DetailsActivityFragment extends Fragment  {
                             }
                         }.execute();
                     }
-                    // if it is not in favorites
                     else {
-                        // add to favorites
                         new AsyncTask<Void, Void, Uri>() {
                             @Override
                             protected Uri doInBackground(Void... params) {
@@ -344,7 +335,6 @@ public class DetailsActivityFragment extends Fragment  {
 
             for(int i = 0; i < trailerArray.length(); i++) {
                 JSONObject trailer = trailerArray.getJSONObject(i);
-                // Only show Trailers which are on Youtube
                 if (trailer.getString("site").contentEquals("YouTube")) {
                     Trailer trailerModel = new Trailer(trailer);
                     results.add(trailerModel);
@@ -389,9 +379,6 @@ public class DetailsActivityFragment extends Fragment  {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
-                    // But it does make debugging a *lot* easier if you print out the completed
-                    // buffer for debugging.
                     buffer.append(line + "\n");
                 }
 
@@ -422,7 +409,6 @@ public class DetailsActivityFragment extends Fragment  {
                 e.printStackTrace();
             }
 
-            // This will only happen if there was an error getting or parsing the forecast.
             return null;
         }
 
@@ -504,9 +490,6 @@ public class DetailsActivityFragment extends Fragment  {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
-                    // But it does make debugging a *lot* easier if you print out the completed
-                    // buffer for debugging.
                     buffer.append(line + "\n");
                 }
 
@@ -537,7 +520,6 @@ public class DetailsActivityFragment extends Fragment  {
                 e.printStackTrace();
             }
 
-            // This will only happen if there was an error getting or parsing the forecast.
             return null;
         }
 
@@ -552,9 +534,9 @@ public class DetailsActivityFragment extends Fragment  {
                     StringBuilder sb = new StringBuilder();
                     for (int x = 0; x < reviews.size(); x++) {
                         review1 = reviews.get(x);
-                        sb.append(review1.getAuthor() + "\n");
-
-                        sb.append(review1.getContent());
+                        sb.append(review1.getAuthor().toUpperCase()+ "\n"+ "\n"+ "\n");
+                        sb.append(review1.getContent()+ "\n");
+                        sb.append("-----------------------"+ "\n"+ "\n");
                     }
                     reviewContent.setText(sb.toString());
                     if (getActivity() instanceof MainActivity) {

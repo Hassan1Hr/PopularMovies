@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.hassan.popularmovies.MainActivityFragment;
+import com.example.hassan.popularmovies.Fragments.MainActivityFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

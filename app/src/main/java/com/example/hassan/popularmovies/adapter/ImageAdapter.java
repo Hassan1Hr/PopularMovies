@@ -23,10 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.hassan.popularmovies.Base.MyApplication;
-import com.example.hassan.popularmovies.DetailsActivity;
-import com.example.hassan.popularmovies.DetailsActivityFragment;
-import com.example.hassan.popularmovies.MainActivity;
+import com.example.hassan.popularmovies.Activities.MyApplication;
+import com.example.hassan.popularmovies.Activities.DetailsActivity;
+import com.example.hassan.popularmovies.Fragments.DetailsActivityFragment;
 import com.example.hassan.popularmovies.R;
 import com.example.hassan.popularmovies.data.MovieContract;
 import com.example.hassan.popularmovies.model.Movie;
@@ -44,7 +43,6 @@ public class ImageAdapter extends BaseAdapter {
     private final ArrayList<Movie> mMovies;
     private final LayoutInflater mInflater;
     private boolean twoPaneMode;
-    Callback call;
     FragmentManager mFragment;
 
 
@@ -52,21 +50,12 @@ public class ImageAdapter extends BaseAdapter {
     public ImageAdapter(Context c,boolean paneMode,FragmentManager fragment) {
         mContext = c;
         mFragment = fragment;
-       call = new Callback() {
-           @Override
-           public void onItemSelected(Movie movie) {
 
-           }
-       };
         mMovies = new ArrayList<>();
         mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         twoPaneMode = paneMode;
     }
-    public interface Callback {
-        void onItemSelected(Movie movie);
 
-
-    }
     public void addAll(Collection<Movie> xs) {
         mMovies.addAll(xs);
         notifyDataSetChanged();
@@ -109,7 +98,9 @@ public class ImageAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         viewHolder.position = position;
         Uri posterUri = movie.buildPosterUri(mContext.getString(R.string.api_poster_default_size));
-        Glide.with(MyApplication.getAppContext()).load(posterUri).into(viewHolder.imageView);
+        Glide.with(MyApplication.getAppContext()).load(posterUri)
+                .placeholder(R.color.colorPrimary)
+                .into(viewHolder.imageView);
         new AsyncTask<Void, Void, Integer>() {
             @Override
             protected Integer doInBackground(Void... params) {
@@ -228,7 +219,6 @@ public class ImageAdapter extends BaseAdapter {
     }
     private void addFavorite(final Movie mMovie,final ViewHolder viewHolder) {
         if (mMovie != null) {
-            // check if movie is in favorites or not
             new AsyncTask<Void, Void, Integer>() {
 
                 @Override
@@ -238,9 +228,8 @@ public class ImageAdapter extends BaseAdapter {
 
                 @Override
                 protected void onPostExecute(Integer isFavorited) {
-                    // if it is in favorites
+
                     if (isFavorited == 1) {
-                        // delete from favorites
                         new AsyncTask<Void, Void, Integer>() {
                             @Override
                             protected Integer doInBackground(Void... params) {
@@ -262,9 +251,7 @@ public class ImageAdapter extends BaseAdapter {
                             }
                         }.execute();
                     }
-                    // if it is not in favorites
                     else {
-                        // add to favorites
                         new AsyncTask<Void, Void, Uri>() {
                             @Override
                             protected Uri doInBackground(Void... params) {

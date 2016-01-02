@@ -1,8 +1,8 @@
-# Popular Movies App
+# Popular Movies Application
 
 Here is a functional and amazing android app which I made from scratch for Android Mobile App Launchpad a program supported by MCIT and Google.
 
-## Features in Popular Movies App
+## Features
 
 With this app, you can do the follwing:
 * Discover the most popular, the most rated or the highest rated movies.
@@ -17,15 +17,6 @@ so you want to get your API Key, and just paste it to:
     ```
     app/build.gradle
     ```
-
-
-## Libraries used in this Project
-
-[Glide](https://github.com/bumptech/glide)
-[Picasso](http://square.github.io/picasso/)
-[LinearListView](https://github.com/frankiesardo/LinearListView)
-[CircularImageView](https://github.com/Pkmmte/CircularImageView)
-
 
 ## Screens
 
